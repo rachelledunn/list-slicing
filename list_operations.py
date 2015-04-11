@@ -208,7 +208,7 @@ def custom_append(input_list, value):
 
 
 def custom_extend(input_list, second_list):
-    """a 
+    """
     like input_list.extend(second_list), should append every item in the second
     list to the end of the first list and return nothing
     """
@@ -222,7 +222,7 @@ def custom_insert(input_list, index, value):
     at the specified index of the input list and return nothing
     """
 
-    input_list[:index] + [value] + input_list[index:]
+    input_list[index:index] = [value] 
 
 
 def custom_remove(input_list, value):
@@ -230,9 +230,13 @@ def custom_remove(input_list, value):
     like input_list.remove(value), should remove the first item of the
     value specified and return nothing
     """
-#input_list
- #   [input_list.index(value)+1:] = ""
-    return None
+
+    index = -1
+    for i in input_list:
+        index = index + 1
+        if i == value:
+            del input_list[index]
+            break
 
 
 def custom_pop(input_list):
@@ -240,7 +244,10 @@ def custom_pop(input_list):
     like input_list.pop(), should remove the last item in the list and
     return it
     """
-    return input_list[:-1]
+
+    last_item = input_list[-1]
+    del input_list[-1]
+    return last_item
 
 
 def custom_index(input_list, value):
@@ -248,10 +255,13 @@ def custom_index(input_list, value):
     like input_list.index(value), should return the index of the first item
     which matches the specified value
     """
+    list_index = -1
     for i in input_list:
-        if input_list[i] == value:
-            return i
+        list_index = list_index + 1
+        if i == value:
             break
+
+    return list_index
 
 
 def custom_count(input_list, value):
@@ -259,11 +269,14 @@ def custom_count(input_list, value):
     like input_list.count(value), should return the number of times the specified
     value appears in the list.
     """
+
     count = 0
     for i in input_list:
-        if input_list[i] == value:
+        if i == value:
             count = count + 1
+
     return count
+
 
 def custom_reverse(input_list):
     """
@@ -271,9 +284,7 @@ def custom_reverse(input_list):
     and return nothing (we call this reversing "in place")
     """
 
-    newlist = []
-    for i in input_list:
-        newlist = input_list[i] + newlist
+    input_list = input_list[::-1]
 
 
 def custom_contains(input_list, value):
@@ -284,10 +295,12 @@ def custom_contains(input_list, value):
     """
 
     for i in input_list:
-        if input_list[i] == value:
+        if i == value:
             return True
+            break
         else:
             return False
+            break
 
 
 def custom_equality(some_list, another_list):
@@ -296,13 +309,16 @@ def custom_equality(some_list, another_list):
     the same values in the same indexes
     """
 
-    for i in another_list:
-        if some_list[i] != another_list[i]:
-            return False
-            break
+    list_index = 0
+    for i in some_list and x in another_list:
+        list_index = list_index + 1
+        while i == x:
+            list_equality = True
+            continue
         else:
-            return True
+            list_equality = False
 
+    return list_equality
 
 ##############################################################################
 # END OF EXTRA CREDIT
